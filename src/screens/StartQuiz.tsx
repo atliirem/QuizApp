@@ -42,16 +42,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 28,
+   title: {
+    fontSize: 24,
     fontFamily: Fonts.primary,
     textAlign: "center",
-    fontWeight: "500",
-    marginVertical: 40,
-    color: "#333",
-    bottom: 70,
+    color: "#2c2c2c",
+    fontWeight: "700",
+    letterSpacing: 0.5,
+    marginBottom: 22,
+    top: -25,
   
    
-  
+    
   },
+   
+  
+ 
 });

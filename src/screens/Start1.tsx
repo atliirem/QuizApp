@@ -1,140 +1,166 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView ,Platform, ScrollView, } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Fonts from "../style/fonts";
-import {Logo} from "../component/Logo";
-import {Button} from "../component/Button";
+import { Logo } from "../component/Logo";
+import { Button } from "../component/Button";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const Start1 = () => {
   const [name, setName] = useState("");
   const navigation = useNavigation<any>();
-  console.log("name", name)
 
   return (
-    <KeyboardAvoidingView  style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
-       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        keyboardShouldPersistTaps="handled"
+    <SafeAreaView style={styles.safe}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-    <View style={styles.container}>
-     <Logo/>
-       
-      {/* <Image
-        style={styles.image}
-        source={require("../../assets/image/image2.png")}
-        resizeMode="contain"
-      /> */}
-       <Text style={styles.header}>Hoşgeldin!</Text>
-       <Text style={styles.header2}>Yarışmaya Hazır mısın?</Text>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View style={styles.container}>
+            <View style={styles.topSection}>
+              <Logo />
+              <View style={styles.headerContainer}>
+                <Text style={styles.header}>Hoşgeldin!</Text>
+                <Text style={styles.header2}>Yarışmaya Hazır mısın?</Text>
+              </View>
+            </View>
 
-      <Text style={styles.label}>Yarışmacının adı</Text>
+            <View style={styles.bottomSection}>
+              <View style={styles.inputContainer}>
+                <Text style={styles.label}>Yarışmacının Adı</Text>
+                <TextInput
+                  style={styles.input}
+                  value={name}
+                  onChangeText={setName}
+                  placeholder="Adınızı girin"
+                  placeholderTextColor="#aaa"
+                />
+              </View>
 
-      <TextInput
-        style={styles.input}
-        value={name}
-        onChangeText={setName}
-        placeholder="Yarışmacının Adı"
-        placeholderTextColor="#999"
-      />
+              <View style={styles.buttonContainer}>
+                <Button
+                  label="Başla"
+                  bg="#e69830"
+                  color="white"
+                  onPress={() => navigation.navigate("Start", { name })}
+                />
 
-      <TouchableOpacity
-        style={[
-          styles.button,
-          !name.trim() && { backgroundColor: "#e69830" },
-        ]}
-        onPress={() => navigation.navigate("Start", { name })}
-        disabled={!name.trim()}
-      >
-        <Text style={styles.buttonText}>Başla</Text>
-        <Button
-        label="Geçmiş Oyunlar"
-        bg="#e69830"
-        onPress={() => navigation.navigate("History")}
-      />
-
-      </TouchableOpacity>
-    </View>
-    </ScrollView>
-    </KeyboardAvoidingView>
+                <Button
+                  label="Geçmiş Oyunlar"
+                  bg="#d4d4d4"
+                  color="#333"
+                  onPress={() =>
+                    navigation.reset({
+                      index: 0,
+                      routes: [{ name: "History" }],
+                    })
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
-
-
 const styles = StyleSheet.create({
+  safe: {
+    flex: 1,
+    backgroundColor: "#f7f3f0",
+  },
   container: {
     flex: 1,
     backgroundColor: "#f7f3f0",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 24,
-    bottom: 2
-
+    justifyContent: "space-evenly",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
-  image: {
-    width: "200%",
-    height: 400,
-    marginBottom: 20,
-    bottom:210,
-    
+  topSection: {
+    alignItems: "center",
+    width: "100%",
+  },
+  headerContainer: {
+    marginTop: -50,
+    alignItems: "center",
+    gap: 4,
+
   },
   header: {
-    fontSize: 32,
+    fontSize: 36,
     fontFamily: Fonts.bold,
-    marginBottom: 28,
     textAlign: "center",
-    bottom: 100,
-    color: 'rgba(0, 0, 0, 1)ff',
-    fontWeight: '600',
-    left: 15,
-  },
-    header2: {
-    fontSize: 32,
-    fontFamily: Fonts.bold,
-    marginBottom: 24,
-    textAlign: "center",
-    bottom: 120,
-    fontWeight: '500',
-    color: 'black'
-    
+    color: "#2c2c2c",
+    fontWeight: "700",
+    letterSpacing: 0.5,
+
+
 
   },
+  header2: {
+    fontSize: 24,
+    fontFamily: Fonts.primary,
+    textAlign: "center",
+    color: "#666",
+    fontWeight: "400",
+  },
+  bottomSection: {
+    width: "100%",
+    gap: 24,
+  },
+  inputContainer: {
+    width: "100%",
+  },
   label: {
-    fontSize: 22,
-    marginBottom: 8,
-    fontWeight: '400',
-    
- 
-    bottom:90,
-    
-    
-  
+    fontSize: 18,
+    fontFamily: Fonts.primary,
+    marginBottom: 10,
+    color: "#444",
+    fontWeight: "500",
+    textAlign: 'center',
+    alignSelf: 'center'
+
   },
   input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 16,
-    width: "100%",
-    fontSize: 16,
+    borderWidth: 2,
+    borderColor: "#e0e0e0",
+    borderRadius: 12,
+    padding: 16,
+    width: "98%",
+    fontSize: 18,
+    justifyContent: 'center',
+    alignSelf: 'center',
     fontFamily: Fonts.primary,
     backgroundColor: "#fff",
-    bottom:90,
+    color: "#2c2c2c",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
   },
-  button: {
-    backgroundColor: "#e69830",
-    paddingVertical: 14,
-    paddingHorizontal: 32,
-    alignItems: "center",
-    bottom: 85,
-    borderRadius: 21, width: 270, height: 52, 
+  buttonContainer: {
+    width: "100%",
+    alignSelf: 'center',
+    alignItems: 'center',
+  
+   
   },
-  buttonText: {
-    color: "white",
-    fontSize: 22,
-    fontWeight:'600',
-  },
+
 });

@@ -29,7 +29,12 @@ export const History = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Geçmiş Skorlar</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Start1' as never)}>
+        <TouchableOpacity  onPress={() =>
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Start1" as never }],
+    })
+  }>
           <MaterialIcons name="arrow-forward-ios" size={28} color="#e69830" />
         </TouchableOpacity>
       </View>

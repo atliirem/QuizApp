@@ -63,7 +63,7 @@ useEffect(() => {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center" },
   title: { fontSize: 25, fontWeight: "bold", marginBottom: 10, top: -25 },
-  score: { fontSize: 25, color: "black", top: 25, fontWeight: "500" },
+  score: { fontSize: 25, color: "black", top: 25, fontWeight: "500", marginBottom: 30, },
   image: {
     width: 407,
     height: 387,

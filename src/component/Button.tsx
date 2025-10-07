@@ -22,13 +22,13 @@ export const Button = ({ label, bg , color = "white", onPress}: Props) => {
 const styles = StyleSheet.create({
  button: {
  
-    margin: 12,
+    margin: 5,
     borderRadius: 21,
-    width: 270,
+    width: 240,
     height: 52,
     justifyContent: "center",
     alignItems: "center",
-    top: 20,
+    
   },
   text: {
     fontSize: 26,
