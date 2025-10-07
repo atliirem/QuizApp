@@ -50,12 +50,16 @@ export const Start1 = () => {
               </View>
 
               <View style={styles.buttonContainer}>
-                <Button
-                  label="Başla"
-                  bg="#e69830"
-                  color="white"
-                  onPress={() => navigation.navigate("Start", { name })}
-                />
+ <Button
+  label="Başla"
+  bg={name.trim() ? "#e69830" : "#e69830"} 
+  color="white"
+  onPress={() => {
+    if (!name.trim()) return;
+    navigation.navigate("Start", { name });
+  }}
+/>
+
 
                 <Button
                   label="Geçmiş Oyunlar"

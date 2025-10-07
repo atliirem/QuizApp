@@ -18,18 +18,19 @@ export const StartQuiz = () => {
         Yarışmaya hazır mısın, {name}?{"\n"}Başlamak için dokun!
       </Text>
 
-      <Button
-        bg="#e69830"
-        label="Start"
-        onPress={() =>
-          navigation.navigate("Questions", {
-            categoryId,
-            difficulty,
-            name,
-            surname,
-          })
-        }
-      />
+   <Button
+  bg="#e69830"
+  label="Start"
+  onPress={() =>
+    navigation.navigate("Questions", {
+      categoryId,
+      difficulty,
+      name,
+      surname,
+    })
+  }
+/>
+
     </View>
   );
 };
